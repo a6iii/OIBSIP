@@ -1,28 +1,22 @@
- function convert() {
-    let value = document.getElementById("inputValue").value;
-    let type = document.getElementById("type").value;
-    let result = document.getElementById("result");
+ function append(value) {
+    document.getElementById("display").value += value;
+}
 
-    if (value === "") {
-        result.innerHTML = "Please enter a value!";
-        return;
-    }
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
 
-    value = parseFloat(value);
-    let converted;
+function deleteLast() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
 
-    if (type === "celsius") {
-        converted = (value * 9/5) + 32;
-        result.innerHTML = `${converted.toFixed(2)} °F`;
-    }
-
-    else if (type === "fahrenheit") {
-        converted = (value - 32) * 5/9;
-        result.innerHTML = `${converted.toFixed(2)} °C`;
-    }
-
-    else if (type === "kelvin") {
-        converted = value + 273.15;
-        result.innerHTML = `${converted.toFixed(2)} K`;
+function calculate() {
+    try {
+        let result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
+    } 
+    catch (error) {
+        document.getElementById("display").value = "Error";
     }
 }
