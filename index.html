@@ -1,51 +1,29 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abinaya Portfolio</title>
+    <title>Temperature Converter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Hi, I'm Abinaya</h1>
-        <p>Aspiring Frontend Developer | AIML Student</p>
-    </header>
+    <div class="container">
+        <h2>Temperature Converter</h2>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am an AIML student passionate about web development. I love building web apps and learning new technologies.</p>
-    </section>
+        <input type="number" id="inputValue" placeholder="Enter temperature">
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript (Basics)</li>
-        </ul>
-    </section>
+        <select id="type">
+            <option value="celsius">Celsius to Fahrenheit</option>
+            <option value="fahrenheit">Fahrenheit to Celsius</option>
+            <option value="kelvin">Celsius to Kelvin</option>
+        </select>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <ul>
-            <li>Mini E-commerce Web App</li>
-            <li>To-do App</li>
-            <li>Calculator</li>
-            <li>Portfolio Website</li>
-        </ul>
-    </section>
+        <button onclick="convert()">Convert</button>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: abinaya@example.com</p>
-        <p>Phone: +91 1234567890</p>
-    </section>
+        <div id="result"></div>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 Abinaya. All Rights Reserved.</p>
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
