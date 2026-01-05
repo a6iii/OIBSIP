@@ -3,41 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>Tribute Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="calculator">
-    <input type="text" id="display" disabled>
+    <div class="container">
+        <h1>Tribute to Dr. APJ Abdul Kalam</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/A._P._J._Abdul_Kalam.jpg" alt="Abdul Kalam">
+        
+        <p class="intro">
+            Dr. APJ Abdul Kalam, known as the *Missile Man of India*, was one of the most loved presidents of India.
+            He inspired millions with his simplicity, dedication, and powerful vision for the youth.
+        </p>
 
-    <div class="buttons">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="deleteLast()">DEL</button>
-        <button onclick="append('%')">%</button>
-        <button onclick="append('/')">/</button>
+        <h2>Why I Admire Him</h2>
+        <ul>
+            <li>He believed in the power of dreams.</li>
+            <li>He motivated the youth to work hard.</li>
+            <li>He lived a simple and humble life.</li>
+        </ul>
 
-        <button onclick="append('7')">7</button>
-        <button onclick="append('8')">8</button>
-        <button onclick="append('9')">9</button>
-        <button onclick="append('*')">*</button>
-
-        <button onclick="append('4')">4</button>
-        <button onclick="append('5')">5</button>
-        <button onclick="append('6')">6</button>
-        <button onclick="append('-')">-</button>
-
-        <button onclick="append('1')">1</button>
-        <button onclick="append('2')">2</button>
-        <button onclick="append('3')">3</button>
-        <button onclick="append('+')">+</button>
-
-        <button onclick="append('0')" class="zero">0</button>
-        <button onclick="append('.')">.</button>
-        <button onclick="calculate()">=</button>
+        <p class="quote">"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."</p>
     </div>
-</div>
 
-<script src="script.js"></script>
 </body>
 </html>
