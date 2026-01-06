@@ -1,31 +1,177 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tribute Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>To-Do Web App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2dd4bf, #3b82f6);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            margin: 60px auto;
+            background: #0f172a;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .task {
+            background: #1e293b;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons button {
+            margin-left: 5px;
+            padding: 5px 8px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: #38bdf8;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Tribute to Dr. APJ Abdul Kalam</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/A._P._J._Abdul_Kalam.jpg" alt="Abdul Kalam">
-        
-        <p class="intro">
-            Dr. APJ Abdul Kalam, known as the *Missile Man of India*, was one of the most loved presidents of India.
-            He inspired millions with his simplicity, dedication, and powerful vision for the youth.
-        </p>
+<div class="container">
+    <h2>🌟 To-Do Web App</h2>
 
-        <h2>Why I Admire Him</h2>
-        <ul>
-            <li>He believed in the power of dreams.</li>
-            <li>He motivated the youth to work hard.</li>
-            <li>He lived a simple and humble life.</li>
-        </ul>
-
-        <p class="quote">"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."</p>
+    <div class="input-row">
+        <input id="taskInput" type="text" placeholder="Enter your task...">
+        <button onclick="addTask()">Add</button>
     </div>
+
+    <div class="section">
+        <h3>Pending Tasks</h3>
+        <div id="pendingTasks"></div>
+    </div>
+
+    <div class="section">
+        <h3>Completed Tasks</h3>
+        <div id="completedTasks"></div>
+    </div>
+</div>
+
+<script>
+    let pending = JSON.parse(localStorage.getItem("pending")) || [];
+    let completed = JSON.parse(localStorage.getItem("completed")) || [];
+
+    function saveData() {
+        localStorage.setItem("pending", JSON.stringify(pending));
+        localStorage.setItem("completed", JSON.stringify(completed));
+    }
+
+    function render() {
+        let pendingBox = document.getElementById("pendingTasks");
+        let completedBox = document.getElementById("completedTasks");
+
+        pendingBox.innerHTML = "";
+        completedBox.innerHTML = "";
+
+        pending.forEach((task, index) => {
+            pendingBox.innerHTML += `
+                <div class="task">
+                    <span>${task}</span>
+                    <div class="icons">
+                        <button onclick="completeTask(${index})">Complete</button>
+                        <button onclick="deletePending(${index})">Delete</button>
+                    </div>
+                </div>`;
+        });
+
+        completed.forEach((task, index) => {
+            completedBox.innerHTML += `
+                <div class="task">
+                    <span class="done">${task}</span>
+                    <div class="icons">
+                        <button onclick="deleteCompleted(${index})">Delete</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function addTask() {
+        let task = document.getElementById("taskInput").value.trim();
+        if (task === "") return;
+
+        pending.push(task);
+        document.getElementById("taskInput").value = "";
+        saveData();
+        render();
+    }
+
+    function completeTask(i) {
+        completed.push(pending[i]);
+        pending.splice(i, 1);
+        saveData();
+        render();
+    }
+
+    function deletePending(i) {
+        pending.splice(i, 1);
+        saveData();
+        render();
+    }
+
+    function deleteCompleted(i) {
+        completed.splice(i, 1);
+        saveData();
+        render();
+    }
+
+    render();
+</script>
 
 </body>
 </html>
